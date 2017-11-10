@@ -83,7 +83,7 @@ export default {
 }
 
 .form{
-	width: 30%;
+	width: 500px;
 	height: 250px;
 	position: absolute;
 	top: 0;
