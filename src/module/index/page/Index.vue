@@ -22,12 +22,39 @@
 	  	<el-dialog
 		  title="个人信息"
 		  :visible.sync="dialogVisible"
-		  width="30%"
-		  :before-close="handleDialogClose">
-		  <span>这里显示个人信息</span>
+		  width="30%">
+		  <div class="dialog-body">
+			  <el-row  type="flex" class="row-bg" justify="space-around">
+			  	<el-col :span="12">账号:{{userInfo.loginId}}</el-col>
+			  	<el-col :span="12">头像:{{userInfo.avatarUrl}}</el-col>
+			  </el-row>
+			  <el-row type="flex" class="row-bg" justify="space-around">
+			  	<el-col :span="12">姓名:{{userInfo.name}}</el-col>
+			  	<el-col :span="12">昵称:{{userInfo.nickname}}</el-col>
+			  </el-row>
+			  <el-row type="flex" class="row-bg" justify="space-around">
+			  	<el-col :span="12">性别:<span v-if="userInfo.sex === true">男</span>
+								<span v-else>女</span>
+			  	</el-col>
+			  	<el-col :span="12">年龄:{{userInfo.age}}</el-col>
+			  </el-row >
+			  <el-row type="flex" class="row-bg" justify="space-around">
+			  	<el-col :span="8">QQ:{{userInfo.qq}}</el-col>
+			  	<el-col :span="8">电话:{{userInfo.cel}}</el-col>
+			  	<el-col :span="8">邮箱:{{userInfo.email}}</el-col>
+			  </el-row>
+			  <el-row type="flex" class="row-bg" justify="space-around">
+			  	<el-col :span="6">国家:{{userInfo.countryName}}</el-col>
+			  	<el-col :span="6">省:{{userInfo.provinceName}}</el-col>
+			  	<el-col :span="6">市:{{userInfo.cityName}}</el-col>
+			  	<el-col :span="6">区:{{userInfo.regionName}}</el-col>
+			  </el-row>
+			  <el-row type="flex" class="row-bg" justify="space-around">
+			  	<el-col :span="24">地址:{{userInfo.address}}</el-col>
+			  </el-row>
+		  </div>
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="dialogVisible = false">取 消</el-button>
-		    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+		    <el-button type="primary" @click="dialogVisible = false">返回</el-button>
 		  </span>
 		</el-dialog>
 	  </el-header>
@@ -89,13 +116,38 @@
 </template>
 
 <script>
+ import {indexService}  from '@/module/index/service/indexService';
  export default {
     data () {
       return {
-        isCollapse: false,
-        isShow: false,
-        dialogVisible: false,
+        isCollapse: false,//左菜单是否展开
+        isShow: false,//右菜单是否显示
+        dialogVisible: false,//个人信息弹框显示
+        userInfo:{ //个人信息
+        	userId:"",//id
+        	name:"",//name
+        	loginId:"",//登录账号
+        	pwd:"",//密码
+        	nickName:"",//昵称
+        	email:"",//邮箱
+			cel:"",//手机 
+			age:"",//年龄
+			avatarUrl:"",//头像
+            countryId:"",//国家id
+			countryName:"",//国家name
+			provinceId:"",//省id
+			provinceName:"",//省name
+			cityId:"",//城市id
+			cityName:"",//城市name
+			regionId:"",//区ID
+			regionName:"",//区name
+   			address:"",//地址        	
+        }
       };
+    },
+    created:function(){
+      	  indexService.setMain(this);
+          indexService.initMenu();
     },
     methods: {
       handleOpen:function(key, keyPath) {
@@ -115,18 +167,12 @@
       },
       handleCommand:function(command) {
         if(command === "logout"){
-        	this.$router.push("/login");
+        	indexService.logout();
         }
         if(command === "selfInfo"){
         	this.dialogVisible = true;
+        	indexService.selectUserInfo();
         }
-      },
-      handleDialogClose:function(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
       }
     }
   }
@@ -211,4 +257,11 @@
 .main{
 	
 }
+.dialog-body{
+	text-align: left;
+	margin-left:5%;
+}
+ .row-bg {
+    padding: 10px 0;
+ }
 </style>

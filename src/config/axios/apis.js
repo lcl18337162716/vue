@@ -11,9 +11,9 @@ var apis = {
 
 
 //登录接口
-apis.set("doLogin","/ui/user/login");
+apis.set("doLogin","/manage/login/doLogin");
 //首页
-
+apis.set("selectUserInfo","/manage/user/selectUserInfo");
 
 
 

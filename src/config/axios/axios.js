@@ -3,8 +3,8 @@ import qs from 'qs';
 
 
 /*axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;*/
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
+//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 //配置请求头
 //axios.defaults.baseURL = 'http://192.168.41.78:8083';   //配置接口地址
 // 请求时的拦截
@@ -17,10 +17,9 @@ axios.interceptors.request.use(function (config) {
       config.method === "delete"
     ) {
       // 序列化
-     // config.data = qs.stringify(config.data);
-      console.log("json===>",config.data);
+      //config.data = qs.stringify(config.data);
     }
-   console.log("json===>",config.data);
+    config.headers.token=localStorage.getItem('token');
     return config;
   }, function (error) {
     // 当请求异常时做一些处理

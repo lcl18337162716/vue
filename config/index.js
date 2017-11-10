@@ -32,11 +32,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-	   	   '/ui': {
-           target: 'http://192.168.41.78:8081',
+	   	   '/manage': {
+           target: 'http://192.168.41.78:9000',
            changeOrigin: true,
 			      pathRewrite: {
-			        '^/ui': '/ui'
+			        '^/manage': '/manage'
 			      }
        }
     },

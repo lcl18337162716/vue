@@ -1,23 +1,44 @@
 
-var apis = require('@/config/axios/apis');
-var axios = require('@/config/axios/axios');
+const apis = require('@/config/axios/apis');
+const axios = require('@/config/axios/axios');
 
-var dataSource = axios.dataSource;
-module.exports = {
-	setMain: function(main){
+const dataSource = axios.dataSource;
+export const loginService = {
+	
+	setMain:function(main){
 		this.main = main;
 	},
+	/**
+	 *用户登录
+	 */
 	doLogin:function(){
 		var self = this.main;
-		//请求
-		console.log('loginForm',self.loginForm);
-		self.$router.push('/');
+		console.log('doLogin======>loginForm',self.loginForm);
 		dataSource.get("doLogin").post(self.loginForm).then(
-			function (data) {
-			   console.log(data);
+			function (result) {
+			   console.log(result);
+			   if(result.code === 10000){
+			 	window.localStorage.setItem('token', result.data.token);
+			   	 let userInfo = JSON.stringify(result.data.userInfo);
+			   	 window.localStorage.setItem('userInfo', userInfo);
+			   	 self.$router.push('/');
+			   }else if(result.code === 20001){
+				   	self.$message({
+				          dangerouslyUseHTMLString: true,
+				          message: result.data.errorMsg,
+				          type: 'error'
+				        });
+			   }else{
+			   		self.$message({
+			    	      dangerouslyUseHTMLString: true,
+			              message: result.msg,
+			              type: 'error'
+			        });
+			   }
 			}, function (error) {
 			   console.log(error);
 			}
 		);
-	}
+	},
+
 }
