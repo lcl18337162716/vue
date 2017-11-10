@@ -14,7 +14,7 @@ var apis = {
 apis.set("doLogin","/manage/login/doLogin");
 //首页
 apis.set("selectUserInfo","/manage/user/selectUserInfo");
-
+apis.set("initMenu","/manage/index/initMenu");
 
 
 

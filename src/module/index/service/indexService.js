@@ -14,11 +14,29 @@ export const indexService = {
 	},
 	initMenu:function(){
 		let self = this.main;
-		dataSource.get("initMenu").post().then(
-			function(result){
-				
-			},function(error){
-				
+		var params ={};
+		params.userId = JSON.parse(localStorage.getItem('userInfo')).userId;
+		dataSource.get("initMenu").post(params).then(
+			function (result) {
+			   console.log(result);
+			   if(result.code === 10000){
+			 	window.localStorage.setItem('menus', JSON.stringify(result.data));
+			 	self.menus = result.data;
+			   }else if(result.code === 20001){
+				   	self.$message({
+				          dangerouslyUseHTMLString: true,
+				          message: result.data.errorMsg,
+				          type: 'error'
+				        });
+			   }else{
+			   		self.$message({
+			    	      dangerouslyUseHTMLString: true,
+			              message: result.msg,
+			              type: 'error'
+			        });
+			   }
+			}, function (error) {
+			   console.log(error);
 			}
 		);
 	},

@@ -61,7 +61,6 @@
 	  <el-container>
 	    <el-aside :width="isCollapse?'64px':'150px'">
 		    <el-menu
-		      default-active="2"
 		      class="left-menu"
 		      @open="handleOpen"
 		      @close="handleClose"
@@ -72,13 +71,10 @@
 		      <el-menu-item index="1" @click="onMenu()">
 		      	<i class="el-icon-menu" ></i>
 		      </el-menu-item >
-		      <el-menu-item index="2" @click="onMenuItem()">
-		        <i class="el-icon-setting" ></i>
-		        <span slot="title">系统管理</span>
-		      </el-menu-item>
-		      <el-menu-item index="3" @click="onMenuItem()">
+		      <el-menu-item :index="item.orders+''" @click="onMenuItem(item.id)" v-for = "item in menus" 
+		      	v-if="menus.length>0 && item.pid == 0" :key="item.id">
 		        <i class="el-icon-edit" ></i>
-		        <span slot="title">个人中心</span>
+		        <span slot="title">{{item.name}}</span>
 		      </el-menu-item>
 		    </el-menu>
 		  </el-aside>
@@ -142,7 +138,18 @@
 			regionId:"",//区ID
 			regionName:"",//区name
    			address:"",//地址        	
-        }
+        },
+        menus:[
+	        {   
+/*	        	id:"",//id
+	        	icon:"",//图标
+	        	name:"",//name
+	        	pid:"",//父id
+	        	pids:"",//路径
+	        	url:"",//url
+	        	order:0,//排序*/
+       		 }
+        ]
       };
     },
     created:function(){
@@ -159,7 +166,7 @@
       onMenu:function(){
       	this.isCollapse = !this.isCollapse;
       },
-      onMenuItem:function(){
+      onMenuItem:function(id){
       	this.isShow = true;
       },
       closeMenuItem:function(){
