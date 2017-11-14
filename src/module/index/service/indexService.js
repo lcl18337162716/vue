@@ -12,6 +12,9 @@ export const indexService = {
 		let self = this.main;
         self.userInfo = JSON.parse(localStorage.getItem('userInfo'));
 	},
+	/**
+	 * 初始化左菜单
+	 */
 	initMenu:function(){
 		let self = this.main;
 		var params ={};
@@ -40,6 +43,33 @@ export const indexService = {
 			}
 		);
 	},
+	/**
+	 * 初始化右菜单（二级）
+	 * @param {Object} id 一级菜单id
+	 */
+	initItem:function(id){
+		let self = this.main;
+		let menus = JSON.parse(localStorage.getItem('menus'));
+		console.log("menus",menus);
+		var menu = {};
+		var items = new Array();
+		let len = menus.length
+		console.log("len",len);
+		console.log("len",menus[4]);
+		for(let n = 0 ; len>n ; n++){
+			if( menus[n].permissionId === id){
+				menu.name = menus[n].name;
+			}
+			if( menus[n].pid === id){
+				items.push(menus[n]);
+			}
+		}
+		menu.items = items;
+		self.menu = menu;
+	},
+	/**
+	 * 登出
+	 */
 	logout:function(){
 		let self = this.main;
 		self.$router.push("/login");

@@ -34,7 +34,7 @@
 <script>
 import { loginFromRules }   from '@/module/login/rules/loginRules';
 import {loginService}  from '@/module/login/service/loginService';
-//var loginService = require('@/module/login/service/loginService');
+
 
 
 export default {

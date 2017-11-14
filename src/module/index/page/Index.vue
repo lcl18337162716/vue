@@ -68,11 +68,9 @@
 		      text-color="#fff"
 		      active-text-color="#ffd04b"
 		      :collapse="isCollapse">
-		      <el-menu-item index="1" @click="onMenu()">
-		      	<i class="el-icon-menu" ></i>
-		      </el-menu-item >
-		      <el-menu-item :index="item.orders+''" @click="onMenuItem(item.id)" v-for = "item in menus" 
-		      	v-if="menus.length>0 && item.pid == 0" :key="item.id">
+		       <div class="el-menu-item" @click="onMenu()"><i class="el-icon-menu" ></i></div>
+		      <el-menu-item :index="item.orders+''" @click="onMenuItem(item.permissionId)" v-for = "item in menus" 
+		      	v-if="menus.length>0 && item.pid == 0" :key="item.permissionId">
 		        <i class="el-icon-edit" ></i>
 		        <span slot="title">{{item.name}}</span>
 		      </el-menu-item>
@@ -82,29 +80,21 @@
 		  	  <i class="el-icon-arrow-left icon-left" @click="closeMenuItem()" ></i>
 		  	  <el-menu
 		  	  	class="right-menu"
-		  	  default-active="3"
 		      @open="handleOpen"
 		      @close="handleClose"
 		      text-color="#fff"
+		      router
 		      active-text-color="#ffd04b">
-		       <div style="font-size: 16px;height: 60px;line-height: 60px;" >12345678</div>
-		      <el-menu-item index="1" >
-		        <span slot="title">一级标题</span>
-		      </el-menu-item>
-		      
-		  	   <el-menu-item index="4" >
-		        <span slot="title">二级标题</span>
-		      </el-menu-item>
-		      <el-menu-item index="5" >
-		        <span slot="title">二级标题</span>
-		      </el-menu-item>
+		       <div style="font-size: 16px;height: 60px;line-height: 60px;" >{{menu.name}}</div>
+			      <el-menu-item :index="item.url+''"  v-for = "item in menu.items" 
+			      	v-if="menu.items.length>0" :key="item.permissionId">
+			        <span slot="title">{{item.name}}</span>
+			      </el-menu-item>
 		      </el-menu>
 		  </el-aside>
 	    <el-container>
-	      <el-main class="main" style="background-color: #00FFFF;">    
-	      	
-	      	
-	      	
+	      <el-main class="main" style="background-color:white;"> 
+	      	<router-view></router-view>    	
 	      </el-main>
 	    </el-container>
 	  </el-container>
@@ -139,17 +129,17 @@
 			regionName:"",//区name
    			address:"",//地址        	
         },
-        menus:[
+        menus:[ //左菜单显示1级目录
 	        {   
-/*	        	id:"",//id
-	        	icon:"",//图标
-	        	name:"",//name
-	        	pid:"",//父id
-	        	pids:"",//路径
-	        	url:"",//url
-	        	order:0,//排序*/
-       		 }
-        ]
+       		}
+        ],
+        menu:{    //右菜单显示2级目录
+        	name:"",
+        	items:[
+        		{
+        		}			        	
+        	]
+        }        
       };
     },
     created:function(){
@@ -168,6 +158,7 @@
       },
       onMenuItem:function(id){
       	this.isShow = true;
+      	indexService.initItem(id);
       },
       closeMenuItem:function(){
       	this.isShow = false;
@@ -255,7 +246,7 @@
 }
 .left-menu{
 	height: 100vh;
-	border-top: 1px solid cyan;
+	border-top: 1px solid #2C3E50;
 	border-right: none;
 }
 .right-menu{
