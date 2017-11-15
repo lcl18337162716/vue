@@ -2,29 +2,29 @@
 	<div class="login">
 		<el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="100px" class="form">
 				  <el-row>
-				  	<el-col :span="15">
+				  	<el-col :span="18">
 					  <el-form-item label="账号:" prop="loginId" class="login-form-label">
 					    <el-input v-model="loginForm.loginId"></el-input>
 					  </el-form-item>
 					 </el-col>
-					 <el-col :span="9"></el-col>
+					 <el-col :span="6"></el-col>
 				  </el-row>
 				  <el-row>
-				  	<el-col :span="15">
+				  	<el-col :span="18">
 					  	<el-form-item label="密码:" prop="pwd">
 				    	<el-input v-model="loginForm.pwd"></el-input>
 				  		</el-form-item>
 					 </el-col>
-					 <el-col :span="9"></el-col>
+					 <el-col :span="6"></el-col>
 				  </el-row>				 
 				  	<el-row>
-				  	<el-col :span="15">
+				  	<el-col :span="18">
 				  		 <el-form-item>
 					  		<el-button type="primary" @click="onSubmit('loginForm')">登录</el-button>
 				    		<el-button @click="resetForm('loginForm')">重置</el-button>
 				 		 </el-form-item>
 					 </el-col>
-					 <el-col :span="9"></el-col>
+					 <el-col :span="6"></el-col>
 				  </el-row>
 				    
 		</el-form>			

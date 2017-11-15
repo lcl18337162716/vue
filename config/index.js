@@ -27,13 +27,13 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: process.env.PORT || 9999,
+    port: process.env.PORT || 8080,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
 	   	   '/manage': {
-           target: 'http://192.168.41.78:9000',
+           target: 'http://127.0.0.1:9000',
            changeOrigin: true,
 			      pathRewrite: {
 			        '^/manage': '/manage'

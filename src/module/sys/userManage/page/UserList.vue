@@ -1,30 +1,31 @@
 <template>
 <el-container class ="container">
 	<el-form  label-width="80px" :model="searchUserForm" class="searchUserForm">
-		<el-row :gutter="20">
-			<el-col :span="5">
+		<el-row type="flex" class="row-bg" justify="space-around">
+			<el-col :span="6">
 			  <el-form-item label="账号">
 			    <el-input v-model="searchUserForm.loginId"></el-input>
 			  </el-form-item>
 		    </el-col>
-			<el-col :span="5"  >
+			<el-col :span="6"  >
 				<el-form-item label="用户名字">
 		    		<el-input v-model="searchUserForm.name"></el-input>
 		  		</el-form-item>
 			</el-col>
-		  <el-col :span="5"  >
+		  <el-col :span="6"  >
 			  <el-form-item label="昵称">
 			    <el-input v-model="searchUserForm.nickName"></el-input>
 			  </el-form-item>
 		  </el-col>
-		  <el-col :span="5" >
+		  <el-col :span="6" >
 			  <el-form-item label="手机号">
 			    <el-input v-model="searchUserForm.cel"></el-input>
 			  </el-form-item>
 		  </el-col>
 	  	</el-row>
-	  	<el-row >
-	  		<el-col :offset="22" :span="2">
+	  	<el-row type="flex" class="row-bg" justify="end">
+	  		<el-col :span="20"></el-col>
+	  		<el-col :span="4">
 	  			<el-button type="primary" @click="onSearch()">查询</el-button>
 	  		</el-col>
 	  	</el-row> 
@@ -88,15 +89,15 @@
 		      label="操作"
 		      align = "center">
 		      <template slot-scope="scope">
-               	<el-dropdown :hide-on-click="false">
+               	<el-dropdown :hide-on-click="false" >
 				  <span class="el-dropdown-link" style="color: #409EFF;">
 				    <i class="iconfont icon-more"></i>
 				  </span>
-				  <el-dropdown-menu slot="dropdown">
-				    <el-dropdown-item v-if="scope.row.status === true">禁用</el-dropdown-item>
-				    <el-dropdown-item v-else>启用</el-dropdown-item>
-				    <el-dropdown-item>修改</el-dropdown-item>
-				    <el-dropdown-item>删除</el-dropdown-item>
+				  <el-dropdown-menu slot="dropdown" >
+				    <el-dropdown-item v-if="scope.row.status === true"><el-button type="text" @click="doDisable(scope.row.userId)">禁用</el-button></el-dropdown-item>
+				    <el-dropdown-item v-else ><el-button type="text" @click="doEnable(scope.row.userId)">启用</el-button></el-dropdown-item>
+				    <el-dropdown-item ><el-button type="text" @click="updateUserById(scope.row.userId)">修改</el-button></el-dropdown-item>
+				    <el-dropdown-item ><el-button type="text" @click="deleteUserById(scope.row.userId)">删除</el-button></el-dropdown-item>
 				  </el-dropdown-menu>
 				</el-dropdown>
 		      </template>
@@ -159,6 +160,18 @@ export default {
 	  		self.searchUserForm.pageNo = val;
       		this.onSearch();
       	},
+      	doDisable:function(val){
+      		this.$message('click on item ' + val);
+      	},
+      	doEnable:function(val){
+      		this.$message('click on item ' + val);
+      	},
+      	updateUserById:function(val){
+      		this.$message('click on item ' + val);
+      	},
+      	deleteUserById:function(val){
+      		this.$message('click on item ' + val);
+      	},
     },
   }
 </script>
@@ -175,5 +188,8 @@ export default {
     &:last-child {
       margin-bottom: 0;
     }
+  }
+   .row-bg {
+    padding: 10px 0;
   }
 </style>

@@ -22,7 +22,7 @@
 	  	<el-dialog
 		  title="个人信息"
 		  :visible.sync="dialogVisible"
-		  width="30%">
+		  width="650px">
 		  <div class="dialog-body">
 			  <el-row  type="flex" class="row-bg" justify="space-around">
 			  	<el-col :span="12">账号:{{userInfo.loginId}}</el-col>
