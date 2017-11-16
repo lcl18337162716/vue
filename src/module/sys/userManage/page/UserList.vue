@@ -2,22 +2,22 @@
 <el-container class ="container">
 	<el-form  label-width="80px" :model="searchUserForm" class="searchUserForm">
 		<el-row type="flex" class="row-bg" justify="space-around">
-			<el-col :span="6">
+			<el-col :span="5">
 			  <el-form-item label="账号">
 			    <el-input v-model="searchUserForm.loginId"></el-input>
 			  </el-form-item>
 		    </el-col>
-			<el-col :span="6"  >
+			<el-col :span="5"  >
 				<el-form-item label="用户名字">
 		    		<el-input v-model="searchUserForm.name"></el-input>
 		  		</el-form-item>
 			</el-col>
-		  <el-col :span="6"  >
+		  <el-col :span="5"  >
 			  <el-form-item label="昵称">
 			    <el-input v-model="searchUserForm.nickName"></el-input>
 			  </el-form-item>
 		  </el-col>
-		  <el-col :span="6" >
+		  <el-col :span="5" >
 			  <el-form-item label="手机号">
 			    <el-input v-model="searchUserForm.cel"></el-input>
 			  </el-form-item>
