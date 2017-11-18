@@ -14,7 +14,7 @@ export const loginService = {
 	doLogin:function(){
 		var self = this.main;
 		console.log('doLogin======>loginForm',self.loginForm);
-		dataSource.get("doLogin").post(self.loginForm).then(
+		dataSource.getUrl("doLogin").post(self.loginForm).then(
 			function (result) {
 			   console.log(result);
 			   if(result.code === 10000){

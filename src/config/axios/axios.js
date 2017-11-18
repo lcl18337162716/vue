@@ -37,7 +37,7 @@ axios.interceptors.response.use(function (response) {
 
 var apis = require('./apis');
 var dataSource = {
-	get:function (key){
+	getUrl:function (key){
 		var url = apis.get(key) ;
 		if (url !== undefined && url !=''){
 			this.url = url;
@@ -50,6 +50,19 @@ var dataSource = {
 	post:function (params) {
 	    return new Promise((resolve, reject) => {
 	        axios.post(this.url, params)
+	            .then(response => {
+	                resolve(response.data);
+	            }, err => {
+	                reject(err);
+	            })
+	            .catch((error) => {
+	               reject(error)
+	            })
+	    })
+    },
+    get:function (params) {
+	    return new Promise((resolve, reject) => {
+	        axios.get(this.url,  {params:params})
 	            .then(response => {
 	                resolve(response.data);
 	            }, err => {

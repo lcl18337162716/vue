@@ -19,7 +19,7 @@ export const indexService = {
 		let self = this.main;
 		var params ={};
 		params.userId = JSON.parse(localStorage.getItem('userInfo')).userId;
-		dataSource.get("initMenu").post(params).then(
+		dataSource.getUrl("initMenu").post(params).then(
 			function (result) {
 			   console.log(result);
 			   if(result.code === 10000){

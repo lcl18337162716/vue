@@ -17,7 +17,6 @@ apis.set("selectUserInfo","/manage/user/selectUserInfo");
 apis.set("initMenu","/manage/index/initMenu");
 //用户管理
 apis.set("selectUserList","/manage/user/selectUserList");
-
-
+apis.set("deleteUserById","/manage/user/deleteUserById");
 
 module.exports = apis;
