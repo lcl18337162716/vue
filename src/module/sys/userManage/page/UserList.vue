@@ -1,41 +1,46 @@
 <template>
 <el-container class ="container">
+	
 	<el-form  label-width="80px" :model="searchUserForm" class="searchUserForm">
-		<el-row type="flex" class="row-bg" justify="space-around">
+		<el-row type="flex" justify="space-around">
 			<el-col :span="5">
 			  <el-form-item label="账号">
-			    <el-input v-model="searchUserForm.loginId"></el-input>
+			    <el-input v-model="searchUserForm.loginId" size="small"></el-input>
 			  </el-form-item>
 		    </el-col>
 			<el-col :span="5"  >
 				<el-form-item label="用户名字">
-		    		<el-input v-model="searchUserForm.name"></el-input>
+		    		<el-input v-model="searchUserForm.name" size="small"></el-input>
 		  		</el-form-item>
 			</el-col>
 		  <el-col :span="5"  >
 			  <el-form-item label="昵称">
-			    <el-input v-model="searchUserForm.nickName"></el-input>
+			    <el-input v-model="searchUserForm.nickName" size="small"></el-input>
 			  </el-form-item>
 		  </el-col>
 		  <el-col :span="5" >
 			  <el-form-item label="手机号">
-			    <el-input v-model="searchUserForm.cel"></el-input>
+			    <el-input v-model="searchUserForm.cel" size="small"></el-input>
 			  </el-form-item>
 		  </el-col>
 	  	</el-row>
-	  	<el-row type="flex" class="row-bg" justify="end">
-	  		<el-col :span="20"></el-col>
+	  	<el-row type="flex" justify="end">
 	  		<el-col :span="4">
-	  			<el-button type="primary" @click="onSearch()">查询</el-button>
+	  			<el-button type="primary" @click="addUser()" size="small">添加</el-button>
+	  		</el-col>
+	  		<el-col :span="16"></el-col>
+	  		<el-col :span="4">
+	  			<el-button type="primary" @click="onSearch()" size="small">查询</el-button>
 	  		</el-col>
 	  	</el-row> 
-	  		<el-row>
+	  	<el-row>
   		  <el-table
 		    :data="userList"
 		    stripe
 		    border
 		    style="width: 100%"
-		    height="200">
+		    height="200"
+		    size="small">
 		    <el-table-column
 		      type="index"
 		      align = "center">
@@ -88,7 +93,7 @@
 		      prop="status"
 		      label="操作"
 		      align = "center">
-		      <template slot-scope="scope">
+		      <template slot-scope="scope" align = "center">
                	<el-dropdown :hide-on-click="false" >
 				  <span class="el-dropdown-link" style="color: #409EFF;">
 				    <i class="iconfont icon-more"></i>
@@ -168,6 +173,9 @@ export default {
       	},
       	updateUserById:function(val){
       		this.$message('click on item ' + val);
+      	},
+      	addUser:function(){
+      		 this.$router.push('/sys/addUser');
       	},
       	deleteUserById:function(val){
       		this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {

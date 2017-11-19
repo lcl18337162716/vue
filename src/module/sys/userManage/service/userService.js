@@ -47,7 +47,7 @@ export const userService = {
 			function (result) {
 			   console.log(result);
 			   if(result.code === 10000){
-				   	self..$message({
+				   	self.$message({
 			            type: 'success',
 			            message: result.msg,
 			          });
