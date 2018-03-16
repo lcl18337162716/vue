@@ -94,14 +94,6 @@
 		  </el-aside>
 	    <el-container>
 	      <el-main class="main" style="background-color:white;"> 
-	      	<el-row>
-	    		<el-breadcrumb separator="/">
-				  <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-				  <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-				  <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-				  <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-			  	</el-breadcrumb>
-	    	</el-row>
 	      	<router-view></router-view>    	
 	      </el-main>
 	    </el-container>
@@ -147,7 +139,21 @@
         		{
         		}			        	
         	]
-        }        
+        },
+        breadcrumb:{
+        	item1:{
+        		name:"",
+        	},
+        	item2:{
+        		name:"",
+        	},
+        	item3:{
+        		name:"",
+        	},
+        	item4:{
+        		name:"",
+        	},
+        }
       };
     },
     created:function(){

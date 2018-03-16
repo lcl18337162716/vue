@@ -1,7 +1,7 @@
 <template>
 <el-container class ="container">
 	
-	<el-form  label-width="80px" :model="searchUserForm" class="searchUserForm">
+	<el-form  label-width="80px" :model="searchUserForm" class="searchUserForm">		
 		<el-row type="flex" justify="space-around">
 			<el-col :span="5">
 			  <el-form-item label="账号">

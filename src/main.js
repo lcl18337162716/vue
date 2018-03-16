@@ -6,6 +6,17 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css?1'
 
+//----------------------------editor start---------------------------
+import VueQuillEditor from 'vue-quill-editor'
+
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+Vue.use(VueQuillEditor, /* { default global options } */)
+//-------------------------------editor end---------------------------
+
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
